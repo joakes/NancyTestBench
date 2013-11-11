@@ -38,7 +38,7 @@
         @Html.LabelFor(m => m.LastUpdated, new { @class = "col-sm-2 control-label" }, "Last Updated")
         <input type="hidden" name="AreDefault" value="@Model.AreDefault" />
         <div class="col-sm-10">
-            <p class="form-control-static">@Model.LastUpdated.ToString()</p>
+            <p class="form-control-static">@(Model.LastUpdated == null ? "" : @Model.LastUpdated.ToString())</p>
         </div>
     </div>
     <div class="form-group">

@@ -1,6 +1,5 @@
 ﻿namespace CAI.TestBench.Web.Modules
 {
-    using System;
     using System.Linq;
     using Business;
     using Model;
@@ -51,7 +50,6 @@
             {
                 var invalidProperties = ex.PropertyBindingExceptions.Select(x => x.PropertyName).ToArray();
                 var settings = this.BindAndValidate<CaiServiceSettings>(invalidProperties);
-                settings.LastUpdated = DateTime.Now;
                 return View["/settings", settings];
             }
         }
