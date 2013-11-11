@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "master-layout.cshtml";
+}
+
+<h1>Service Status</h1>
+
+<p><button id="btnStatus" type="button" class="btn btn-primary">Run Status Check</button></p>
+<br />
+<div class="panel hidden">
+    <div id="successTitle" class="panel-heading hidden"><strong>Success!</strong> CAI is alive</div>
+    <div id="errorTitle" class="panel-heading hidden"><strong>Oh snap!</strong> CAI is down</div>
+    <div class="panel-body">
+        <p>Member controller is alive...</p>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="/Content/Scripts/app/serviceStatus.js"></script>
+}

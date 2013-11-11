@@ -1,11 +1,10 @@
-﻿using CAI.TestBench.Business.Contracts;
-
-namespace CAI.TestBench.Web.Modules
+﻿namespace CAI.TestBench.Web.Modules
 {
+    using Business.Contracts;
     using System.Linq;
-    using Business;
     using Model;
     using Nancy;
+    using Nancy.Extensions;
     using Nancy.ModelBinding;
 
     public class HomeModule : NancyModule
@@ -18,7 +17,8 @@ namespace CAI.TestBench.Web.Modules
 
             Get["/"] = p => View["home"];
             Get["/about"] = p => View["about"];
-            Get["/cai-status"] = p => View["cai-status"];
+            Get["/service-status"] = p => View["service-status"];
+            Get["/service-status", ctx => ctx.IsAjaxRequest()] = CheckServiceStatus;
             Get["/settings/{restore?}"] = GetSettings;
             Post["/settings"] = UpdateSettings;
         }
@@ -54,6 +54,12 @@ namespace CAI.TestBench.Web.Modules
                 var settings = this.BindAndValidate<CaiServiceSettings>(invalidProperties);
                 return View["/settings", settings];
             }
+        }
+
+        private dynamic CheckServiceStatus(dynamic @params)
+        {
+            var result = new { status = "ok", message = string.Empty };
+            return Response.AsJson(result);
         }
     }
 }

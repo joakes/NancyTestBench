@@ -131,6 +131,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\main.css" />
     <None Include="Content\Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Content\Scripts\app\serviceStatus.js" />
     <Content Include="Content\Scripts\bootstrap.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
     <Content Include="Content\Scripts\jquery-1.9.1.js" />
@@ -139,6 +140,7 @@
     <Content Include="Content\Scripts\less-1.4.2.min.js" />
     <Content Include="Views\MemberController\accounts-with-balances.cshtml" />
     <Content Include="Views\Home\about.cshtml" />
+    <Content Include="Views\Home\service-status.cshtml" />
     <None Include="Views\Home\home.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Content\Scripts\jquery-1.9.1.min.map" />
