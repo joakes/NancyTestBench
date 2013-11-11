@@ -4,7 +4,7 @@
 
     public interface ICaiSettingsRepository
     {
-        CaiServiceSettings GetDefaultServiceSettings();
+        CaiServiceSettings GetCaiServiceSettings(bool restoreToDefault);
 
         void UpdateServiceSettings(CaiServiceSettings settings);
     }

@@ -6,21 +6,10 @@
     using Model;
     using Nancy;
     using Nancy.ModelBinding;
-    using Raven.Client;
 
     public class HomeModule : NancyModule
     {
         private readonly ICaiSettingsRepository _caiSettingsRepository;
-        private const string SettingsItemName = "Settings";
-
-        private readonly CaiServiceSettings _defaultCaiServiceSettings = new CaiServiceSettings()
-        {
-            BranchNumber = 992,
-            ServiceId = 602,
-            Username = "NET",
-            Organisation = "TEST_PNCS",
-            LastUpdated = DateTime.Now
-        };
 
         public HomeModule(ICaiSettingsRepository caiSettingsRepository)
         {
@@ -37,19 +26,12 @@
         {
             if (Request.Query["restore"])
             {
-                // retrieve from data store
-                return View["settings", _defaultCaiServiceSettings];
+                var defaultSettings = _caiSettingsRepository.GetCaiServiceSettings(true);
+                return View["settings", defaultSettings];
             }
 
-            if (Session[SettingsItemName] != null)
-            {
-                var settings = Session[SettingsItemName] as CaiServiceSettings;
-                Session.Delete(SettingsItemName);
-                return View["settings", settings];
-            }
-
-            // TODO retrieve from data store
-            return View["settings", _defaultCaiServiceSettings];
+            var settings = _caiSettingsRepository.GetCaiServiceSettings(false);
+            return View["settings", settings];
         }
 
         private dynamic UpdateSettings(dynamic @params)
@@ -57,12 +39,10 @@
             try
             {
                 var settings = this.BindAndValidate<CaiServiceSettings>();
-                settings.LastUpdated = DateTime.Now;
                 if (ModelValidationResult.IsValid)
                 {
-                    // TODO persist to data store
-                    Session[SettingsItemName] = settings;
-                    return Response.AsRedirect("/settings");   
+                    _caiSettingsRepository.UpdateServiceSettings(settings);
+                    return Response.AsRedirect("/settings");
                 }
 
                 return View["settings", settings];
