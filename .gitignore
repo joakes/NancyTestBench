@@ -112,6 +112,9 @@ csx
 # Windows Store app package directory
 AppPackages/
 
+# Raven Indexes
+CompiledIndexCache/
+
 # Others
 sql/
 *.Cache
