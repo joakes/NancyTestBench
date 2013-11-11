@@ -1,4 +1,6 @@
-﻿namespace CAI.TestBench.Web.Modules
+﻿using CAI.TestBench.Business.Contracts;
+
+namespace CAI.TestBench.Web.Modules
 {
     using System.Linq;
     using Business;

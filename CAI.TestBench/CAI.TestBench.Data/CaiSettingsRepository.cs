@@ -1,40 +1,26 @@
 ﻿using System.Linq;
+using CAI.TestBench.Business.Contracts;
 
 namespace CAI.TestBench.Data
 {
     using System;
-    using Business;
     using Model;
     using Raven.Client;
 
     public class CaiSettingsRepository : ICaiSettingsRepository 
     {
         private readonly IDocumentStore _documentStore;
+        private readonly IProvideDefaultCaiServiceSettings _defaultCaiServiceSettings;
 
-        private CaiServiceSettings DefaultServiceSettings
-        {
-            get
-            {
-                return new CaiServiceSettings()
-                {
-                    BranchNumber = 992,
-                    ServiceId = 602,
-                    Username = "NET",
-                    Organisation = "TEST_PNCS",
-                    LastUpdated = DateTime.Now,
-                    AreDefault = true
-                };   
-            }
-        }
-
-        public CaiSettingsRepository(IDocumentStore documentStore)
+        public CaiSettingsRepository(IDocumentStore documentStore, IProvideDefaultCaiServiceSettings defaultCaiServiceSettings)
         {
             _documentStore = documentStore;
+            _defaultCaiServiceSettings = defaultCaiServiceSettings;
         }
 
         public CaiServiceSettings GetCaiServiceSettings(bool restoreToDefault)
         {
-            var defaultSettings = DefaultServiceSettings;
+            var defaultSettings = _defaultCaiServiceSettings.GetDefaultCaiServiceSettings();
 
             using (var session = _documentStore.OpenSession())
             {

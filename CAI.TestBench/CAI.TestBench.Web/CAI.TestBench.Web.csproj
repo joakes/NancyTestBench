@@ -60,6 +60,9 @@
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.21.1\lib\net40\Nancy.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy.Bootstrappers.Ninject">
+      <HintPath>..\packages\Nancy.Bootstrappers.Ninject.0.21.1\lib\net40\Nancy.Bootstrappers.Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy.Hosting.Aspnet">
       <HintPath>..\packages\Nancy.Hosting.Aspnet.0.21.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
@@ -68,6 +71,15 @@
     </Reference>
     <Reference Include="Nancy.ViewEngines.Razor">
       <HintPath>..\packages\Nancy.Viewengines.Razor.0.21.1\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.ChildKernel">
+      <HintPath>..\packages\Ninject.Extensions.ChildKernel.3.0.0.5\lib\net40\Ninject.Extensions.ChildKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\packages\ninject.extensions.conventions.3.0.0.11\lib\net40\Ninject.Extensions.Conventions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\packages\RavenDB.Client.2.5.2750\lib\net40\Raven.Abstractions.dll</HintPath>
@@ -134,6 +146,7 @@
     <Content Include="Views\Home\settings.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlHelpers\ProvideDefaultCaiServiceSettings.cs" />
     <Compile Include="Modules\HomeModule.cs" />
     <Compile Include="HtmlHelpers\BootstrapHtmlHelperExtensions.cs" />
     <Compile Include="Modules\MemberControllerModule.cs" />
